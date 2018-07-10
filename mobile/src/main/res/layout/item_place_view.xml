@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.globeandi.toeat.ui.trip.addtrip.restaurant.RestaurantPlacesItemViewModel"/>
+    </data>
+
+    <android.support.design.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:id="@+id/cvPlaceItm"
+        android:background="@{viewModel.itemBackground}"
+        android:orientation="vertical"
+        app:cardCornerRadius="7dp"
+        app:cardElevation="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/groupNameItem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@{viewModel.name}"
+                    tools:text="Burger King"
+                    />
+
+                <TextView
+                    android:id="@+id/placeAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@{viewModel.vicinity}"
+                    tools:text="Washington street 3001"
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:gravity="end"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:contentDescription="@string/restaurant_icon"
+                    app:imageUrl="@{viewModel.icon}"
+                    android:layout_margin="8dp"
+                    tools:src="@android:drawable/ic_menu_directions"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rating"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text=" 3.4"
+                        android:text="@{viewModel.rating.toString()}"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </android.support.design.card.MaterialCardView>
+</layout>

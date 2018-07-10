@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:map="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="viewModel"
+            type="com.globeandi.toeat.ui.trip.addtrip.TripCreationViewModel"/>
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/clTripCreation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guideline5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="16dp"/>
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guideline6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="16dp"/>
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/close_icon"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:onClick="@{()->viewModel.goBack()}"
+                android:src="@drawable/ic_close"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:text="@string/create_a_trip"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+                app:layout_constraintEnd_toStartOf="@+id/guideline6"
+                app:layout_constraintStart_toEndOf="@+id/imageView3"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="@+id/imageView3"/>
+
+            <EditText
+                android:id="@+id/trip_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/trip_name"
+                android:inputType="text"
+                android:maxLength="20"
+                android:minLines="1"
+                app:layout_constraintEnd_toStartOf="@+id/guideline6"
+                app:layout_constraintStart_toStartOf="@+id/guideline5"
+                app:layout_constraintTop_toBottomOf="@+id/imageView3"/>
+
+            <LinearLayout
+                android:id="@+id/lTripNameCounter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/counter_normal_bg"
+                android:orientation="horizontal"
+                android:padding="2dp"
+                app:layout_constraintEnd_toEndOf="@+id/trip_name"
+                app:layout_constraintTop_toBottomOf="@+id/trip_name">
+
+                <TextView
+                    android:id="@+id/tvTripTitleCounter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    tools:text="0"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:text="@string/trip_title_counter_limit"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    />
+            </LinearLayout>
+
+            <android.support.design.button.MaterialButton
+                android:id="@+id/btnDatePicker"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{()->viewModel.onClickViewDatePicker()}"
+                android:text="@string/select_date_of_the_trip"
+                app:layout_constraintStart_toStartOf="@+id/trip_name"
+                app:layout_constraintTop_toBottomOf="@+id/lTripNameCounter"/>
+
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:hint="@string/mm_dd_yyyy"
+                android:textSize="8pt"
+                android:text="@{viewModel.datePickerResult}"
+                app:layout_constraintBottom_toBottomOf="@+id/btnDatePicker"
+                app:layout_constraintStart_toEndOf="@+id/btnDatePicker"
+                app:layout_constraintTop_toTopOf="@+id/btnDatePicker"
+                tools:text="6/11/2018"/>
+
+            <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:textSize="8pt"
+                app:layout_constraintBottom_toBottomOf="@+id/btnTimePicker"
+                app:layout_constraintStart_toEndOf="@+id/btnTimePicker"
+                app:layout_constraintTop_toTopOf="@+id/btnTimePicker"
+                android:hint="@string/hh_mm"
+                android:text="@{viewModel.timePickerResult}"
+                tools:text="9:02AM"/>
+
+            <android.support.design.button.MaterialButton
+                android:id="@+id/btnTimePicker"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:onClick="@{()->viewModel.onClickViewTimePicker()}"
+                android:text="@string/at_whats_time"
+                app:layout_constraintStart_toStartOf="@+id/btnDatePicker"
+                app:layout_constraintTop_toBottomOf="@+id/btnDatePicker"/>
+
+            <TextView
+                android:id="@+id/tvVotingTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/voting_mode"
+                android:textColor="@color/colorPrimary"
+                android:textSize="8pt"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/btnTimePicker"
+                app:layout_constraintTop_toBottomOf="@+id/btnTimePicker"/>
+
+            <TextView
+                android:id="@+id/tvVotingDesc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/voting_mode_desc"
+                app:layout_constraintEnd_toStartOf="@+id/guideline6"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline5"
+                app:layout_constraintTop_toBottomOf="@+id/tvVotingTitle"/>
+
+            <Switch
+                android:id="@+id/swVoting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="@{viewModel.votingPhase}"
+                android:onCheckedChanged="@{(switch,checked) -> viewModel.switchChanged(checked)}"
+                app:layout_constraintEnd_toEndOf="@+id/tvVotingDesc"
+                app:layout_constraintTop_toBottomOf="@+id/tvVotingDesc"/>
+
+            <TextView
+                android:id="@+id/tvCarpoolTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/carpool_mode"
+                android:textColor="@color/colorPrimary"
+                android:textSize="8pt"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/tvVotingTitle"
+                app:layout_constraintTop_toBottomOf="@+id/swVoting"/>
+
+            <TextView
+                android:id="@+id/tvCarpoolDesc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/carpool_mode_desc"
+                app:layout_constraintEnd_toStartOf="@+id/guideline6"
+                app:layout_constraintStart_toStartOf="@+id/guideline5"
+                app:layout_constraintTop_toBottomOf="@+id/tvCarpoolTitle"/>
+
+            <Switch
+                android:id="@+id/swCarpool"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@+id/tvCarpoolDesc"
+                app:layout_constraintTop_toBottomOf="@+id/tvCarpoolDesc"/>
+
+            <TextView
+                android:id="@+id/tvPlaceToEatTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/place_to_eat"
+                android:textColor="@color/colorPrimary"
+                android:textSize="8pt"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/tvCarpoolTitle"
+                app:layout_constraintTop_toBottomOf="@+id/swCarpool"/>
+
+            <View
+                android:id="@+id/view3"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/light_blue"/>
+
+            <android.support.design.button.MaterialButton
+                android:id="@+id/btnNearbyPlaces"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:onClick="@{()->viewModel.onClickViewRestaurantPicker()}"
+                android:text="@string/view_nearby_places_to_eat"
+                app:layout_constraintStart_toStartOf="@+id/tvPlaceToEatTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvPlaceToEatTitle"/>
+
+            <LinearLayout
+                android:id="@+id/mapHolder"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.isMapSelected ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toStartOf="@+id/guideline6"
+                app:layout_constraintStart_toStartOf="@+id/guideline5"
+                app:layout_constraintTop_toBottomOf="@+id/btnNearbyPlaces">
+
+                <fragment
+                    android:id="@+id/map"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:layout_margin="8dp"
+                    android:layout_marginTop="16dp"
+                    map:cameraBearing="100"
+                    map:cameraTilt="20"
+                    map:cameraZoom="16"
+                    map:liteMode="true"
+                    map:mapType="normal"
+                    map:uiCompass="false"
+                    map:uiRotateGestures="false"
+                    map:uiScrollGestures="false"
+                    map:uiTiltGestures="false"
+                    map:uiZoomControls="false"
+                    map:uiZoomGestures="false"
+                    />
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvSelectedPlaces"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                app:data="@{viewModel.selectedPlaces}"
+                app:layout_constraintEnd_toStartOf="@+id/guideline6"
+                app:layout_constraintStart_toStartOf="@+id/guideline5"
+                app:layout_constraintTop_toBottomOf="@+id/mapHolder"
+                tools:itemCount="2"
+                tools:listitem="@layout/item_place_view"/>
+
+            <android.support.design.button.MaterialButton
+                android:id="@+id/btnTripCreation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorAccent"
+                android:onClick="@{()->viewModel.onCreateTrip()}"
+                android:text="@string/create_trip"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guideline6"
+                app:layout_constraintStart_toStartOf="@+id/guideline5"
+                app:layout_constraintTop_toBottomOf="@+id/rvSelectedPlaces"/>
+
+
+            <ImageView
+                android:id="@+id/ivTitle_alert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginTop="8dp"
+                android:visibility="gone"
+                android:contentDescription="@string/alert_icon"
+                android:src="@drawable/ic_alert_circle_outline"
+                app:layout_constraintBottom_toBottomOf="@+id/trip_name"
+                app:layout_constraintEnd_toEndOf="@+id/trip_name"
+                app:layout_constraintTop_toTopOf="@+id/trip_name"/>
+
+            <ImageView
+                android:id="@+id/ivDate_alert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:visibility="gone"
+                android:contentDescription="@string/alert_icon"
+                android:src="@drawable/ic_alert_circle_outline"
+                app:layout_constraintBottom_toBottomOf="@+id/tvDate"
+                app:layout_constraintStart_toEndOf="@+id/tvDate"
+                app:layout_constraintTop_toTopOf="@+id/tvDate"/>
+
+            <ImageView
+                android:id="@+id/ivTime_alert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:visibility="gone"
+                android:contentDescription="@string/alert_icon"
+                android:src="@drawable/ic_alert_circle_outline"
+                app:layout_constraintBottom_toBottomOf="@+id/tvTime"
+                app:layout_constraintStart_toEndOf="@+id/tvTime"
+                app:layout_constraintTop_toTopOf="@+id/tvTime"/>
+
+            <ImageView
+                android:id="@+id/ivPlaces_alert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:visibility="gone"
+                android:contentDescription="@string/alert_icon"
+                android:src="@drawable/ic_alert_circle_outline"
+                app:layout_constraintBottom_toBottomOf="@+id/btnNearbyPlaces"
+                app:layout_constraintStart_toEndOf="@+id/btnNearbyPlaces"
+                app:layout_constraintTop_toTopOf="@+id/btnNearbyPlaces"/>
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+</layout>

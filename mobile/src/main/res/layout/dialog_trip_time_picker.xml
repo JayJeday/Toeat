@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="timePicker"
+            type="com.globeandi.toeat.ui.trip.tripUtil.tripTimePicker.TripTimePickerViewModel"/>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical|center_horizontal"
+        android:orientation="vertical">
+
+        <TimePicker
+            android:id="@+id/tripTimePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="272dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/white"
+            android:hour="@{timePicker.hour}"
+            android:minute="@{timePicker.minute}"
+            android:onTimeChanged="@{timePicker::timeChanged}"
+            android:timePickerMode="spinner"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <android.support.design.button.MaterialButton
+            android:id="@+id/materialButton7"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:onClick="@{() -> timePicker.dismissDialog()}"
+            android:text="@string/datepicker_negative_btn"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="@+id/tripTimePicker"
+            app:layout_constraintEnd_toStartOf="@+id/materialButton5"/>
+
+        <android.support.design.button.MaterialButton
+            android:id="@+id/materialButton5"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:onClick="@{()-> timePicker.submitTime(timePicker.hour, timePicker.minute)}"
+            android:text="@string/date_picker_positive_btn"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="@+id/tripTimePicker"
+            app:layout_constraintTop_toTopOf="@+id/materialButton7"/>
+
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.globeandi.toeat">
+
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+    <!-- To determine user’s location using WiFi and mobile. It will give us an approximate location -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!-- To determine user’s location using GPS. It will give us precise location -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true"/>
+
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="27"/>
+
+    <application
+        android:name=".ToeatApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_toeat"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Toeat">
+
+        <!-- restrict key for production -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_api_key"/>
+
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:launchMode="singleTop">
+        </activity>
+
+        <activity android:name=".ui.registration.RegistrationActivity"
+            android:parentActivityName=".ui.login.LoginActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.login.LoginActivity"/>
+        </activity>
+
+        <activity android:name=".ui.section.MainActivity"/>
+
+        <activity android:name=".ui.splash.SplashActivity">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN"/>
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.trip.TripActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"/>
+        <activity android:name=".ui.groups.addgroup.GroupCreationActivity"/>
+        <activity
+            android:name=".ui.search.SearchActivity"
+            android:label="@string/title_activity_search"
+            android:parentActivityName=".ui.trip.TripActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.trip.TripActivity"/>
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH"/>
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

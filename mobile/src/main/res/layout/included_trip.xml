@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:map="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="viewModel"
+            type="com.globeandi.toeat.ui.trip.tripFragment.TripFragmentViewModel"/>
+    </data>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/clTrip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guideline5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="16dp"/>
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guideline6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="16dp"/>
+
+            <TextView
+                android:id="@+id/tvTripTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:textAlignment="center"
+                android:textColor="#232F34"
+                android:textSize="21sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/guideline6"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline5"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="A almorzar hoy"/>
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/time"
+                android:textSize="8pt"
+                app:layout_constraintBottom_toBottomOf="@+id/tvTrip_time"
+                app:layout_constraintEnd_toStartOf="@+id/tvTrip_time"
+                app:layout_constraintTop_toTopOf="@+id/tvTrip_time"/>
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/date"
+                android:textSize="17sp"
+                app:layout_constraintStart_toStartOf="@+id/tvTripTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvTripTitle"/>
+
+            <TextView
+                android:id="@+id/tvTripDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textColor="@color/light_blue"
+                android:textSize="8pt"
+                app:layout_constraintBottom_toBottomOf="@+id/textView10"
+                app:layout_constraintStart_toEndOf="@+id/textView10"
+                app:layout_constraintTop_toTopOf="@+id/textView10"
+                tools:text="03/22/2018"/>
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/voting_model"
+                android:textSize="8pt"
+                app:layout_constraintStart_toStartOf="@+id/textView10"
+                app:layout_constraintTop_toBottomOf="@+id/textView10"/>
+
+            <TextView
+                android:id="@+id/tvVotingMode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textColor="@color/light_blue"
+                android:textSize="8pt"
+                app:layout_constraintBottom_toBottomOf="@+id/textView12"
+                app:layout_constraintStart_toEndOf="@+id/textView12"
+                app:layout_constraintTop_toTopOf="@+id/textView12"
+                tools:text="No"/>
+
+            <TextView
+                android:id="@+id/tvTrip_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textColor="@color/light_blue"
+                android:textSize="8pt"
+                app:layout_constraintEnd_toEndOf="@+id/tvTripTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvTripTitle"
+                tools:text="01:22 pm"/>
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="8dp"
+                android:text="@string/carpooling"
+                android:textSize="8pt"
+                app:layout_constraintBottom_toBottomOf="@+id/tvIsCarpooled"
+                app:layout_constraintEnd_toStartOf="@+id/tvIsCarpooled"
+                app:layout_constraintTop_toTopOf="@+id/tvIsCarpooled"/>
+
+            <TextView
+                android:id="@+id/tvIsCarpooled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="16dp"
+                android:textColor="@color/light_blue"
+                android:textSize="8pt"
+                app:layout_constraintEnd_toEndOf="@+id/tvTrip_time"
+                app:layout_constraintTop_toBottomOf="@+id/tvTrip_time"
+                tools:text="No"/>
+
+
+            <LinearLayout
+                android:id="@+id/lljoinableBtn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                android:visibility="@{viewModel.isAdmin ? View.GONE:View.VISIBLE}"
+                app:layout_constraintEnd_toStartOf="@+id/guideline6"
+                app:layout_constraintStart_toStartOf="@+id/guideline5"
+                app:layout_constraintTop_toBottomOf="@+id/textView13">
+
+
+                <android.support.design.button.MaterialButton
+                    android:id="@+id/btnJoinable"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:onClick="@{()->viewModel.onClickAddMemberToTrip()}"
+                    android:text="@string/join_trip"
+                    android:visibility="@{viewModel.isUserJoined ? View.GONE:View.VISIBLE}"/>
+
+                <android.support.design.button.MaterialButton
+                    android:id="@+id/btnUnJoin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:onClick="@{()->viewModel.onClickUnjoinToTrip()}"
+                    android:text="@string/unjoin"
+                    android:visibility="@{viewModel.isUserJoined ? View.VISIBLE : View.GONE}"
+                    app:backgroundTint="@color/error_color"/>
+            </LinearLayout>
+
+
+            <android.support.design.card.MaterialCardView
+                android:id="@+id/cvPlaceItm"
+                android:layout_width="0dp"
+                android:layout_height="58dp"
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="2dp"
+                app:cardElevation="3dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline6"
+                app:layout_constraintStart_toStartOf="@+id/guideline5"
+                app:layout_constraintTop_toBottomOf="@+id/textView14"
+                >
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvUserGoing"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:itemCount="1"
+                    tools:layout_editor_absoluteX="117dp"
+                    tools:layout_editor_absoluteY="268dp"
+                    tools:listitem="@layout/item_usergoing_view"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/beta_unavailable"
+                    android:textSize="16sp"
+                    android:textAlignment="center"
+                    />
+            </android.support.design.card.MaterialCardView>
+
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/restaurant"
+                android:textColor="@color/colorPrimary"
+                android:textSize="8pt"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/guideline6"
+                app:layout_constraintStart_toStartOf="@+id/textView14"
+                app:layout_constraintTop_toBottomOf="@+id/cvPlaceItm"
+                tools:layout_editor_absoluteY="351dp"/>
+
+            <TextView
+                android:id="@+id/tvSelectedPlace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:textSize="17sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline5"
+                app:layout_constraintTop_toBottomOf="@+id/textView15"
+                tools:text="Burger King"/>
+
+            <TextView
+                android:id="@+id/tvSelectedPlaceVisinity"
+                android:layout_width="0dp"
+                android:layout_height="19dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline6"
+                app:layout_constraintStart_toStartOf="@+id/tvSelectedPlace"
+                app:layout_constraintTop_toBottomOf="@+id/tvSelectedPlace"
+                tools:text="514 Washington st"/>
+
+            <fragment
+                android:id="@+id/mapTrip"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="0dp"
+                android:layout_height="160dp"
+                android:layout_margin="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="36dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline6"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline5"
+                app:layout_constraintTop_toBottomOf="@+id/tvSelectedPlaceVisinity"
+                map:liteMode="true"
+                map:mapType="normal"
+                map:uiCompass="false"
+                map:uiRotateGestures="false"
+                map:uiScrollGestures="false"
+                map:uiTiltGestures="false"
+                map:uiZoomControls="false"
+                map:uiZoomGestures="false"/>
+
+            <android.support.design.button.MaterialButton
+                android:id="@+id/materialButton3"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/view_voting_results"
+                app:layout_constraintEnd_toEndOf="@+id/mapTrip"
+                app:layout_constraintTop_toBottomOf="@+id/mapTrip"/>
+
+
+            <!--*************** Voting features ***********  -->
+
+            <TextView
+                android:id="@+id/txtVotingPh"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/voting"
+                android:textColor="@color/colorPrimary"
+                android:textSize="8pt"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/guideline6"
+                app:layout_constraintStart_toStartOf="@+id/guideline5"
+                app:layout_constraintTop_toBottomOf="@+id/cvPlaceItm"/>
+
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="24dp"
+                android:text="@string/here_are_the_users_going_to_eat"
+                android:textColor="@color/colorPrimary"
+                android:textSize="8pt"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/guideline5"
+                app:layout_constraintTop_toBottomOf="@+id/lljoinableBtn"/>
+
+
+            <android.support.constraint.Group
+                android:id="@+id/placeGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.isVotingMode ? View.GONE : View.VISIBLE}"
+                app:constraint_referenced_ids="textView15,tvSelectedPlace,tvSelectedPlaceVisinity,materialButton3,mapTrip"/>
+
+
+            <android.support.constraint.Group
+                android:id="@+id/voteGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.isVotingMode ? View.VISIBLE : View.GONE}"
+                app:constraint_referenced_ids="rvVotingPacesList,txtVotingPh"/>
+
+
+            <android.support.v4.widget.ContentLoadingProgressBar
+                android:id="@+id/progress_loading_bar"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvVotingPacesList"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:adapter="@{viewModel.mPlaces}"
+                app:layout_constraintEnd_toEndOf="@+id/txtVotingPh"
+                app:layout_constraintStart_toStartOf="@+id/txtVotingPh"
+                app:layout_constraintTop_toBottomOf="@+id/txtVotingPh"
+                tools:itemCount="4"
+                tools:listitem="@layout/item_voting_list_view"/>
+
+            <android.support.constraint.Group
+                android:id="@+id/gVotedList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.userVoted ? View.GONE : View.VISIBLE}"
+                app:constraint_referenced_ids="rvVotingPacesList"/>
+
+
+            <android.support.constraint.Group
+                android:id="@+id/submittedVote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.userVoted ? View.VISIBLE : View.GONE}"
+                app:constraint_referenced_ids="tvSubmitPh,imgCheck,txtInfo"/>
+
+            <TextView
+                android:id="@+id/tvSubmitPh"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/vote_submited"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
+                android:textSize="8pt"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/txtVotingPh"
+                app:layout_constraintStart_toStartOf="@+id/txtVotingPh"
+                app:layout_constraintTop_toTopOf="@+id/rvVotingPacesList"/>
+
+            <ImageView
+                android:id="@+id/imgCheck"
+                android:layout_width="66dp"
+                android:layout_height="52dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/ic_check_circle_outline"
+                app:layout_constraintBottom_toBottomOf="@+id/tvSubmitPh"
+                app:layout_constraintEnd_toEndOf="@+id/tvSubmitPh"
+                app:layout_constraintHorizontal_bias="0.986"
+                app:layout_constraintStart_toStartOf="@+id/tvSubmitPh"
+                app:layout_constraintTop_toTopOf="@+id/tvSubmitPh"/>
+
+            <TextView
+                android:id="@+id/txtInfo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/trip_time_result_info"
+                app:layout_constraintEnd_toEndOf="@+id/tvSubmitPh"
+                app:layout_constraintStart_toStartOf="@+id/tvSubmitPh"
+                app:layout_constraintTop_toBottomOf="@+id/imgCheck"/>
+
+        </android.support.constraint.ConstraintLayout>
+
+
+    </ScrollView>
+</layout>

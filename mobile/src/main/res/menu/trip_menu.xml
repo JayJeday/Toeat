@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/createTrip"
+        android:title="@string/create_a_trip"/>
+
+    <item
+        android:id="@+id/leaveGroup"
+        android:title="@string/leave_group"/>
+
+
+    <item
+        android:id="@+id/app_trip_search_action"
+        android:icon="@drawable/ic_search"
+        android:title="@string/search_for_user"
+        app:showAsAction="ifRoom"/>
+
+    <!--app:actionViewClass="android.widget.SearchView"-->
+</menu>

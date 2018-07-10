@@ -1,0 +1,68 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- light theme -->
+    <style name="Theme.Toeat" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:statusBarColor">@color/colorPrimary</item>
+        <!--dark icon on status bar-->
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <item name="coordinatorLayoutStyle">@style/Widget.Support.CoordinatorLayout</item>
+    </style>
+
+    <!--Action Bar style -->
+    <style name="Widget.Toeat.Toolbar." parent="Widget.AppCompat.Toolbar">
+        <!--use the accent color to fill the background-->
+        <!--<item name="android:background">?attr/colorAccent</item>-->
+        <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+    </style>
+
+
+    <!--font inside text-->
+    <style name="TextAppearance.Toeat.TextInputLayout.HintText" parent="TextAppearance.MaterialComponents.Subtitle2">
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+
+    <!--Title style-->
+    <style name="TextAppearance.Toeat.Title" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="textAllCaps">true</item>
+        <item name="android:textColor">@color/text_title_color</item>
+    </style>
+
+
+    <!--************** Style Button s*************-->
+    <style name="Widget.Toeat.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="backgroundTint">?attr/colorPrimaryDark</item>
+    </style>
+
+    <style name="Widget.Toeat.Button.TextButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+
+    <!--Date Picker Style-->
+    <style name="datePicker" parent="Theme.AppCompat.Light">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlActivated">#33691e</item>
+        <item name="android:selectableItemBackgroundBorderless">@color/colorPrimaryDark</item>
+        <item name="colorControlHighlight">#d50000</item>
+
+    </style>
+
+    <!--<style name="TripDatePicker" parent="Theme.AppCompat.Light">-->
+        <!--<item name="colorAccent">#ff6d00</item>-->
+        <!--<item name="colorControlActivated">#33691e</item>-->
+        <!--<item name="android:selectableItemBackgroundBorderless">@color/colorPrimaryDark</item>-->
+        <!--<item name="colorControlHighlight">#d50000</item>-->
+    <!--</style>-->
+
+</resources>
